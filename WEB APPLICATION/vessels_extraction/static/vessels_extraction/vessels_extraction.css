@@ -1,0 +1,132 @@
+body {
+    background-color: black;
+    color: #ffffff;
+}
+
+.navbar {
+    padding: 5px;
+}
+
+.navigation_heading {
+    font-size: 20px;
+    letter-spacing: 6px;
+}
+
+.container_one  {
+    /*background-color: red;*/
+    height: 93vh;
+    display: flex;
+    align-items: center;
+}
+
+.input_image_box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 530px;
+    border-radius: 50%;
+    width: 100%;
+    /*background-color: yellow;*/
+    border: 4px solid #1976D2;
+}
+
+.notice {
+    width: 80%;
+}
+
+.input_image {
+    height: 100%;
+    width: 100%;
+    transform: scale(0.9);
+    overflow: hidden;
+    border-radius: 50%;
+}
+
+.container_two {
+    /*background-color: yellow;*/
+    height: 93vh;
+    display: flex;
+    align-items: center;
+}
+
+.predicted_image_box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 530px;
+    border-radius: 50%;
+    width: 100%;
+    /*background-color: yellow;*/
+    border: 4px solid #DC004E;
+}
+
+.container_three {
+    /*background-color: pink;*/
+    height: 93vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.controls {
+    /*background-color: red;*/
+    height: 300px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.btns1 {
+    width: 100%;
+    margin-top: 50px;
+    background-color: #1976D2;
+    color: #ffffff;
+}
+
+.btns2 {
+    width: 100%;
+    margin-top: 50px;
+    background-color: #DC004E;
+    color: #ffffff;
+
+}
+
+input[type='file'] {
+    background-color: transparent;
+    color: #ffffff;
+}
+
+/*.entered_image,*/
+/*.predicted_image {*/
+/*    margin: auto;*/
+/*    width: 500px;*/
+/*    height: 500px;*/
+/*    padding: 10px 0 10px 0;*/
+/*    box-sizing: border-box;*/
+/*    display: flex;*/
+/*    justify-content: center;*/
+/*    align-items: center;*/
+/*    !*background-color: red;*!*/
+/*}*/
+
+/*.train_image {*/
+/*    width: 100%;*/
+/*    height: 100%;*/
+/*}*/
+
+/*.entered_controls {*/
+/*    display: flex;*/
+/*    justify-content: center;*/
+/*    align-items: center;*/
+/*}*/
+
+/*.predicted_controls {*/
+/*    display: flex;*/
+/*    justify-content: center;*/
+/*}*/
+
+/*.notice {*/
+/*    !*margin-top: 150px;*!*/
+/*}*/
+
+

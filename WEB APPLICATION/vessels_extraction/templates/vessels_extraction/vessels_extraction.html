@@ -1,0 +1,158 @@
+{% load static %}
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+
+      <link href="{% static 'vessels_extraction/vessels_extraction.css' %}" rel="stylesheet">
+    <title>Retinal Blood Vessels Extraction</title>
+  </head>
+  <body>
+
+  <nav class="navbar">
+      <div class="container-fluid">
+        <span class="lead">Retinal Blood Vessels Extraction</span>
+      </div>
+  </nav>
+
+  <div class="container-fluid">
+      <div class="row">
+          <div class="col-sm-5 container_one">
+              <div class="input_image_box">
+                  {% if status == 'no-image' %}
+                      <div class="notice">
+                          <h4 class="lead">Oops! Looks like you haven't selected any image, Please select a retinal image and click on <strong>Upload</strong> button.</h4>
+                      </div>
+                  {% elif status == 'not-uploaded' %}
+                      <div class="notice">
+                          <h4 class="lead">How to use this app?</h4>
+                          <ul>
+                              <li class="lead"><b>Step 1: </b> Please select a retinal fundus image from file selector to the right.</li>
+                              <li class="lead"><b>Step 2: </b> Click on <strong>Upload</strong> button to upload your image.</li>
+                              <li class="lead"><b>Step 3: </b> Click on <strong>Extract Vessels</strong> button to extract retinal vessels.</li>
+                          </ul>
+                      </div>
+                  {% else %}
+                      <img src="{% static '../media/blood_vessels/predict_vessels.jpg' %}" class="input_image">
+                  {% endif %}
+              </div>
+          </div>
+          <div class="col-sm-5 container_two">
+              <div class="predicted_image_box">
+                    {% if status == 'no-image' or status == 'not-uploaded' %}
+                          <div class="notice">
+                              <h4 class="lead">Waiting for retinal image to upload...</h4>
+                          </div>
+                    {% elif predict == 'false' %}
+                        <div class="notice">
+                            <h4 class="lead">Please click on <strong>Extract Vessel</strong> button for prediction.</h4>
+                        </div>
+                    {% else %}
+                        <img src="{% static '../media/blood_vessels/predicted_vessels.jpg' %}" class="input_image">
+                    {% endif %}
+              </div>
+          </div>
+          <div class="col-sm-2 container_three">
+              <div class="controls">
+                  <form method="POST" enctype="multipart/form-data">
+                     {% csrf_token %}
+                      <div>
+                        <input class="form-control" id="formFileSm" type="file" accept="image/*" name="browse_vessels">
+                      </div>
+                      <div>
+                          <button class="btn btns1" name="upload_vessels" type="submit" value="Submit">
+                              UPLOAD
+                          </button>
+                      </div>
+                      <div>
+                        <button class="btn btns2" name="predict_vessels" type="submit" value="Submit">
+                              EXTRACT VESSELS
+                        </button>
+                      </div>
+                  </form>
+              </div>
+          </div>
+      </div>
+
+{#      <form method="POST" enctype="multipart/form-data">#}
+{#          {% csrf_token %}#}
+{#          <div class="row">#}
+{#              <div class="col top_heading">#}
+{#                  <h1 class="display-4"></h1>#}
+{#              </div>#}
+{#          </div>#}
+{#          <div class="row">#}
+{#              <div class="col-sm-6 left_container">#}
+{#                  <div class="row">#}
+{#                      <div class="entered_image">#}
+{#                          {% if status == 'no-image' %}#}
+{#                              <div class="notice">#}
+{#                                  <h4 class="lead">Oops! Looks like you haven't selected any image, Please select a retinal image and click on <strong>Upload</strong> button.</h4>#}
+{#                              </div>#}
+{#                          {% elif status == 'not-uploaded' %}#}
+{#                              <div class="notice">#}
+{#                                  <h4 class="lead">How to use this app?</h4>#}
+{#                                  <ul>#}
+{#                                      <li class="lead"><b>Step 1: </b> Please select a retinal fundus image from file selector below.</li>#}
+{#                                      <li class="lead"><b>Step 2: </b> Click on <strong>Upload</strong> button below to upload your image.</li>#}
+{#                                      <li class="lead"><b>Step 3: </b> Click on predict button to extract retinal vessels.</li>#}
+{#                                  </ul>#}
+{#                              </div>#}
+{#                          {% else %}#}
+{#                              <img src="{% static '../media/blood_vessels/predict_vessels.jpg' %}" class="train_image">#}
+{#                          {% endif %}#}
+{#                      </div>#}
+{#                  </div>#}
+{#                  <div class="row">#}
+{#                      <div class="entered_controls">#}
+{#                          <div class="form-group">#}
+{#                            <input type="file" accept="image/*" name="browse_vessels" class="form-control-file" id="exampleFormControlFile1">#}
+{#                          </div>#}
+{#                          <div>#}
+{#                              <button class="btn btn-outline-primary" name="upload_vessels" type="submit" value="Submit">#}
+{#                                  UPLOAD#}
+{#                              </button>#}
+{#                          </div>#}
+{#                      </div>#}
+{#                  </div>#}
+{#              </div>#}
+{#              <div class="col-sm-6 right_container">#}
+{#                  <div class="row">#}
+{#                      <div class="predicted_image">#}
+{#                          {% if status == 'no-image' or status == 'not-uploaded' %}#}
+{#                              <div class="notice">#}
+{#                                  <h4 class="lead">Waiting for retinal image to upload...</h4>#}
+{#                              </div>#}
+{#                          {% elif predict == 'false' %}#}
+{#                              <div class="notice">#}
+{#                                  <h4 class="lead">Please click on <strong>Extract Vessel</strong> button for prediction.</h4>#}
+{#                              </div>#}
+{#                          {% else %}#}
+{#                              <img src="{% static '../media/blood_vessels/predicted_vessels.jpg' %}" class="train_image">#}
+{#                          {% endif %}#}
+{#                      </div>#}
+{#                  </div>#}
+{#                  <div class="row">#}
+{#                      <div class="predicted_controls">#}
+{#                          <div>#}
+{#                              <button class="btn btn-outline-secondary" name="predict_vessels" type="submit" value="Submit">#}
+{#                                  EXTRACT VESSELS#}
+{#                              </button>#}
+{#                          </div>#}
+{#                      </div>#}
+{#                  </div>#}
+{#              </div>#}
+{#          </div>#}
+{#      </form>#}
+  </div>
+
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
+  </body>
+</html>
